@@ -1,0 +1,92 @@
+@import
+url('https://fonts.googleapis.com/css?family=Poppins:200i,400&display=swap');
+
+body {
+    margin: auto;
+    font-family: Poppins, sans-serif;
+    background-image: URL(https://peoplescience.maritz.com/-/media/Maritz/Project/PeopleScience/Articles/studying_student_library.ashx?h=900&w=1200&la=en&hash=9915CBACFC502B0D5A17609E5912912F622626FF);
+    background-color: hsla(240, 100%, 20%, 0.5);
+    background-blend-mode: soft-light;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100vw;
+}
+
+#title-div {
+    width: 800px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    color: white;
+    font-family: Poppins, sans-serif;
+}
+
+#title {
+    margin-bottom: 0px;
+}
+
+#description {
+    font-style: italic;
+    margin-top: 0px;
+}
+
+label {
+    font-size: large;
+    margin: 10px 0 5px 0;
+    color: white;
+}
+
+input,
+textarea,
+select{
+    width: 100%;
+    border-radius: 3px;
+    border-color: hsla(1, 1%, 1%, 0);
+    margin: 0 0 20px 0;
+    padding: 6px;
+    font-size: large;
+
+}
+
+.input-checkpoint,
+.input-radio{
+    width: auto;
+    margin: 10px;
+    transform: scale(1.5);
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto 0 auto;
+    background-color: hsla(240, 100%, 20%, 0.7);
+    border-radius: 5px;
+    padding: 40px;
+}
+
+.labels{
+    display: block;
+    margin-top: 0px;
+}
+
+button {
+    width: 100%;
+    height: 40px;
+    background-color: #37af65;
+    color: white;
+}
+
+
+
+
+
+@media (max-width: 600px) {
+
+    #title-div{
+        width: 100vw;
+    }
+    
+    form {
+    max-width: 100vw;
+}
+
+}
+
