@@ -183,8 +183,6 @@ function pairElement(str) {
    return result;
 }
 
-pairElement("GCG");
-
 /*
 Expected Results
 
@@ -193,11 +191,30 @@ pairElement("TTGAG") should return [["T","A"],["T","A"],["G","C"],["A","T"],["G"
 pairElement("CTCTA") should return [["C","G"],["T","A"],["C","G"],["T","A"],["A","T"]].
 */
 
-
-
 // Missing letters
+/*
+Find the missing letter in the passed letter range and return it.
+If all letters are present in the range, return undefined.
+*/
 
+function fearNotLetter(str) {
+   let baseRangue = "abcdefghijklmnopqrstuvwxyz";
+   let firstElement = baseRangue.indexOf(str[0]);
+   let lastElement = firstElement + str.length;
 
+   for (let i = firstElement; i < lastElement; i++) {
+      if (str.indexOf(baseRangue[i]) == -1) {
+         return baseRangue[i];
+      }
+   }
+}
+/*
+fearNotLetter("abce") should return "d".
+fearNotLetter("abcdefghjklmno") should return "i".
+fearNotLetter("stvwx") should return "u".
+fearNotLetter("bcdf") should return "e".
+fearNotLetter("abcdefghijklmnopqrstuvwxyz") should return undefined.
+*/
 
 // Sorted Union
 
