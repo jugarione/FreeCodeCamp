@@ -292,8 +292,43 @@ convertHTML("<>") should return "&lt;&gt;".
 convertHTML("abc") should return "abc".
 */
 
-// Sum All Odd Fibonacci Numbers
 
+// Sum All Odd Fibonacci Numbers
+/*
+Given a positive integer num, return the sum of all odd Fibonacci numbers that are less than or equal to num.
+The first two numbers in the Fibonacci sequence are 1 and 1. Every additional number in the sequence is the sum of the two previous numbers. The first six numbers of the Fibonacci sequence are 1, 1, 2, 3, 5 and 8.
+For example, sumFibs(10) should return 10 because all odd Fibonacci numbers less than or equal to 10 are 1, 1, 3, and 5.
+*/
+
+function sumFibs(num) {
+   let fib = [0, 1]
+   fibArray();
+
+   function fibArray() {
+      if (fib[fib.length - 1] > num) {
+         fib.pop() //delete the last element because is bigger than num
+         return;
+      } else {
+         fib.push(fib[fib.length - 1] + fib[fib.length - 2]);
+         return fibArray();
+      }
+   }
+
+   let onlyOdd = fib.filter(int => int % 2);
+   let result = onlyOdd.reduce((asd, int) => asd + int, 0);
+
+   console.log(fib)
+   return result;
+}
+
+/*
+sumFibs(1) should return a number.
+sumFibs(1000) should return 1785.
+sumFibs(4000000) should return 4613732.
+sumFibs(4) should return 5.
+sumFibs(75024) should return 60696.
+sumFibs(75025) should return 135721.
+*/
 
 
 // Sum All Primes
