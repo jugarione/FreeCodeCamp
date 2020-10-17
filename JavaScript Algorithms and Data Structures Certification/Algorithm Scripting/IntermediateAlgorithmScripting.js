@@ -467,6 +467,8 @@ Return an English translated sentence of the passed binary string.
 The binary string will be space separated.
 */
 
+// i didn't know that String.fromCharCode() exist. but i like my solution, so i keep it!
+
 function binaryAgent(str) {
 
    let alphabet = "abcdefghijklmnopqrstuvwxyz"
