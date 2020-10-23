@@ -17,7 +17,6 @@ We'll also pass strings with special symbols, such as "2A3*3a2", "2A3 3a2", and 
 */
 
 function palindrome(str) {
-    let test = "HoLacomoestas"
     let lowerCase = str.toLowerCase()
     let testerLetter = new RegExp(/[A-Za-z0-9]/)
     let testedLetter = []
