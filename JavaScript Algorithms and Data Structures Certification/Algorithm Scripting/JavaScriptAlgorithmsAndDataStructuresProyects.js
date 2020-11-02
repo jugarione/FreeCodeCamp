@@ -184,6 +184,7 @@ function telephoneCheck(str) {
     let result = true;
 
     // first the cheat for this case telephoneCheck("(555)5(55?)-5555")
+    // if i have to do this i will use an external library
     if (/\?/.test(str)) { return false; }
 
     // test Open closed parenthesis and only 3 digits between parenthesis
@@ -240,13 +241,123 @@ telephoneCheck("(555)5(55?)-5555") should return false
 
 //Cash Register
 /*
+JavaScript Algorithms and Data Structures Projects: Cash Register
+Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), payment as the second argument (cash), and cash-in-drawer (cid) as the third argument.
+
+cid is a 2D array listing available currency.
+
+The checkCashRegister() function should always return an object with a status key and a change key.
+
+Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+
+Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+
+Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+
+Currency Unit	Amount
+Penny	$0.01 (PENNY)
+Nickel	$0.05 (NICKEL)
+Dime	$0.1 (DIME)
+Quarter	$0.25 (QUARTER)
+Dollar	$1 (ONE)
+Five Dollars	$5 (FIVE)
+Ten Dollars	$10 (TEN)
+Twenty Dollars	$20 (TWENTY)
+One-hundred Dollars	$100 (ONE HUNDRED)
 
 */
 
+function checkCashRegister(price, cash, cid) {
+    var change = subsAndRound(cash, price);
+    let totalcid = cid.reduce((acumulator, item) => acumulator + item[1], 0);
+    const status = ["INSUFFICIENT_FUNDS", "CLOSED", "OPEN"]
+    let final = []
+    let resultChange = [
+        ["PENNY", 0],
+        ["NICKEL", 0],
+        ["DIME", 0],
+        ["QUARTER", 0],
+        ["ONE", 0],
+        ["FIVE", 0],
+        ["TEN", 0],
+        ["TWENTY", 0],
+        ["ONE HUNDRED", 0]
+    ];
+    let currencyValue = [
+        ["PENNY", 0.01],
+        ["NICKEL", 0.05],
+        ["DIME", 0.1],
+        ["QUARTER", 0.25],
+        ["ONE", 1],
+        ["FIVE", 5],
+        ["TEN", 10],
+        ["TWENTY", 20],
+        ["ONE HUNDRED", 100]
+    ];
+    // because price - cash == 3.26 - 100 ==  96.739999999999997  
+    function subsAndRound(x, y) {
+        return Math.round(((x - y) + Number.EPSILON) * 100) / 100;
+    }
 
+    // because javascript
+    function sumAndRound(x, y) {
+        return Math.round(((x + y) + Number.EPSILON) * 100) / 100;
+    }
+
+    function CashRegister(status, change) {
+
+        this.status = status;
+        this.change = change;
+    }
+
+    //no money
+    if (totalcid < change) {
+        return new CashRegister(status[0], []);
+    }
+
+    // gives the change
+    for (let i = currencyValue.length - 1; i >= 0; i) {
+        if (currencyValue[i][1] <= change && cid[i][1] > 0) {
+            cid[i][1] = subsAndRound(cid[i][1], currencyValue[i][1]);
+            resultChange[i][1] = sumAndRound(resultChange[i][1], currencyValue[i][1]);
+            change = subsAndRound(change, currencyValue[i][1]);
+            console.log(change);
+        } else {
+            i--
+        }
+    }
+    // if after giving the change, change isn't 0 return "INSUFFICIENT_FOUNDS"
+    if (change != 0) {
+        return new CashRegister(status[0], [])
+    }
+
+    function invertArray(arr) {
+        let result = [];
+        for (let p = arr.length - 1; p >= 0; p--) {
+            result.push(arr[p])
+        }
+        return result;
+    }
+
+    console.log(resultChange)
+
+    //when cid == change
+    if (cid.reduce((acumulator, item) => acumulator + item[1], 0) == 0) {
+        return new CashRegister(status[1], resultChange)
+    }
+
+    // always return {status: "", changue: []}
+    //console.log(resultChangue.filter(item => item[1] != 0))
+    return new CashRegister(status[2], invertArray(resultChange.filter(item => item[1] != 0)));
+}
 
 /*
-
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return an object.
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["QUARTER", 0.5]]}.
+checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}.
+checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "INSUFFICIENT_FUNDS", change: []}.
+checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "INSUFFICIENT_FUNDS", change: []}.
+checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]) should return {status: "CLOSED", change: [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]]}.
 */
 
 
