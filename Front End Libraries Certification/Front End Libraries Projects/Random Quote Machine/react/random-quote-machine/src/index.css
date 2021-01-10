@@ -1,0 +1,24 @@
+body {
+  background-color: #505050;
+}
+
+#vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+#quote-box {
+  background-color: white;
+  margin: auto;
+  color: #505050;
+}
+
+#symbol {
+  font-weight: 1000;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.fas {
+  font-size: 1em;
+  color: #505050;
+}

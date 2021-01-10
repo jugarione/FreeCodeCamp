@@ -1,0 +1,202 @@
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Open Sans', sans-serif;
+*/
+
+:root {
+    --titles: 'Montserrat', sans-serif;
+    --text-font: 'Open Sans', sans-serif;
+    
+    --background: #303841;
+    --lighter-background: #45567D;
+    --bright-color: #BE3144;
+    --title: #F0F0F0;
+    --text: #F0F0F0;
+  }
+  
+  html {
+    scroll-padding-top: 60px;
+  }
+  
+  body {
+    margin:0px;
+  }
+  
+  h1{
+    font-family: var(--titles);
+    color: var(--title)
+  }
+  
+  p {
+    font-family: var(--text-font);
+    color: var(--text)
+  }
+  
+  #navbar {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+    overflow: hidden;
+    background-color: var(--bright-color);
+    padding: 0px 10px 0px 0px;
+  }
+  
+  #navbar a {
+    font-family: var(--titles);
+    text-decoration: none;
+    float: right;
+    color: var(--text);
+    text-align: center;
+    padding: 12px;
+    font-size: 30px;
+  }
+  
+  #navbar a:hover {
+    background-color: var(--background);
+  }
+  
+  @media screen and (max-width: 500px) {
+    #navbar a {
+      float: none;
+      display: block;
+      text-align: center;
+    }
+  }
+  
+  #welcome-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+  }
+  
+  #welcome-section h1 {
+    font-size: 80px;
+    margin: 0px;
+  }
+  
+  #welcome-section p {
+    font-size: 30px;
+    color: var(--bright-color);
+    font-weight: 200;
+    margin: 0px;
+  }
+  
+  /* start of work*/
+  
+  #projects {
+    background-color: var(--lighter-background);
+    padding: 50px 0px 100px 0px ;
+    border: 0px;
+    text-align: center;
+  }
+  
+  #projects h1{
+    margin: 0;
+    padding: 30px 0px 10px 0px;
+    font-size: 40px;
+    
+  }
+  
+  #projects-box {
+    display: grid;
+    margin: auto;
+    padding: 20px;
+    max-width: 1300px;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 30px;
+  }
+  
+  
+  .project-tile {
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; 
+    text-align: center;
+    border:1px solid #000000;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  
+  
+  .project-tile p{
+    font-family: var(--titles);
+    background-color: var(--background);
+    width: 100%;
+    text-decoration: none;
+    color: var(--text);
+    text-align: center;
+    padding: 12px;
+    font-size: 30px;
+    margin: 0px;
+    font-weight: bold;
+  }
+  
+  .project-photo {
+    width: 100%;
+  }
+  
+  #show-all-button {
+    background-color: var(--background);
+    color: var(--text);
+    text-decoration: none;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 30px;
+    font-family: var(--titles);
+    font-weight: bold;
+  }
+  
+  /* start of Contact page */
+  
+  #contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background);
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+  }
+  
+  #contact h1{
+    font-size: 80px;
+    margin: 0px;
+    font-family: var(--titles);
+    color: white;
+  }
+  #contact p{
+    font-size: 20px;
+    margin: 5px;
+    font-family: var(--text-font);
+    font-style: italic;
+    font-weight: 200;
+    color: white;
+  }
+  
+  #profiles {
+    margin: 50px;
+  }
+  
+  .profile-name {
+    font-size: 30px;
+    font-family: var(--text-font);
+    margin: 50px;
+    padding: 0px 30px;
+    font-weight: 200;
+    text-decoration: none;
+    color: white;
+  }
+  
+  
